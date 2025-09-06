@@ -13,8 +13,8 @@ type
     procedure EnsureCapacity(MinCapacity: Integer);
   public
     constructor Create(InitialCapacity: Integer = 16);
-    procedure Append(const S: string);
-    procedure AppendChar(C: Char);
+    function Append(const S: string): TStringBuilder;
+    function AppendChar(C: Char): TStringBuilder;
     function ToString: string;
   end;
 
@@ -52,6 +52,7 @@ begin
   EnsureCapacity(FLength + L);
   Move(S[1], FBuffer[FLength], L * SizeOf(Char));
   Inc(FLength, L);
+  Result := Self;
 end;
 
 procedure TStringBuilder.AppendChar(C: Char);
@@ -59,6 +60,7 @@ begin
   EnsureCapacity(FLength + 1);
   FBuffer[FLength] := C;
   Inc(FLength);
+  Result := Self;
 end;
 
 function TStringBuilder.ToString: string;
