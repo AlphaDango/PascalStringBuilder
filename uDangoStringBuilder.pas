@@ -42,7 +42,7 @@ begin
   end;
 end;
 
-procedure TStringBuilder.Append(const S: string);
+function TStringBuilder.Append(const S: string): TStringBuilder;
 var
   L: Integer;
 begin
@@ -55,7 +55,7 @@ begin
   Result := Self;
 end;
 
-procedure TStringBuilder.AppendChar(C: Char);
+function TStringBuilder.AppendChar(C: Char): TStringBuilder;
 begin
   EnsureCapacity(FLength + 1);
   FBuffer[FLength] := C;
